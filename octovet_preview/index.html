@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Octó Vet | Bovine Atlas</title>
+  <meta name="description" content="Atlas veterinário digital interativo para o estudo de bovinos: raças, anatomia e nutrição.">
+  <meta name="theme-color" content="#354C36">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Three.js com versão fixada. Para não depender de CDN, copie para vendor/ e ajuste os caminhos. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+  <!-- ============ CABEÇALHO ============ -->
+  <header class="site-header" id="topo">
+    <div class="brand">
+      <p class="brand-name">OCTÓ VET</p>
+      <p class="brand-sub">BOVINE ATLAS</p>
+    </div>
+    <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+      <ul>
+        <li><a href="#inicio" data-section="inicio">Início</a></li>
+        <li><a href="#atlas" data-section="atlas">Atlas 3D</a></li>
+        <li><a href="#anatomia" data-section="anatomia">Anatomia</a></li>
+        <li><a href="#nutricao" data-section="nutricao">Nutrição</a></li>
+        <li><a href="#racas" data-section="racas">Raças</a></li>
+      </ul>
+    </nav>
+    <p class="version-badge" id="version-badge">Protótipo 000</p>
+  </header>
+
+  <main id="conteudo" tabindex="-1">
+    <noscript>
+      <p class="notice">Este atlas precisa de JavaScript para o visualizador 3D, a busca e os filtros. O texto das seções continua disponível abaixo.</p>
+    </noscript>
+
+    <!-- ============ INÍCIO ============ -->
+    <section id="inicio" class="view" aria-labelledby="inicio-titulo">
+      <div class="hero">
+        <div class="hero-text">
+          <h1 id="inicio-titulo">Octó Vet: atlas veterinário de bovinos</h1>
+          <p class="lead">Gire cinco raças em 3D, consulte estruturas anatômicas e estude nutrientes e suas deficiências, com fontes citadas.</p>
+          <p><a class="btn btn-primary" href="#atlas" data-section="atlas">Abrir o atlas 3D</a></p>
+        </div>
+        <figure class="photo-slot" data-photo="hero">
+          <p class="photo-pending">Imagem de capa pendente: aguardando fotografia com licença verificada.</p>
+          <figcaption>Bovino em pastagem.</figcaption>
+        </figure>
+      </div>
+
+      <h2 class="section-title">O que você encontra aqui</h2>
+      <ul class="feature-list">
+        <li class="card">
+          <h3>Atlas 3D</h3>
+          <p>Rotação, zoom e troca rápida entre Nelore, Aberdeen Angus, Brahman, Hereford e Jersey.</p>
+          <a href="#atlas" data-section="atlas">Ir para o atlas</a>
+        </li>
+        <li class="card">
+          <h3>Anatomia</h3>
+          <p>Estruturas organizadas por sistemas, com descrição funcional e referências.</p>
+          <a href="#anatomia" data-section="anatomia">Ir para anatomia</a>
+        </li>
+        <li class="card">
+          <h3>Nutrição</h3>
+          <p>Nutrientes, fontes, deficiências e manifestações associadas, com nível de evidência.</p>
+          <a href="#nutricao" data-section="nutricao">Ir para nutrição</a>
+        </li>
+        <li class="card">
+          <h3>Mini atlas das raças</h3>
+          <p>Fichas individuais e comparação entre raças.</p>
+          <a href="#racas" data-section="racas">Ir para as raças</a>
+        </li>
+      </ul>
+
+      <aside class="science-note" aria-label="Aviso educacional">
+        <p>Material de apoio ao estudo. Não substitui livros, aulas, pesquisa científica nem a avaliação de um médico-veterinário. Manifestações clínicas listadas são associações, não diagnóstico.</p>
+      </aside>
+    </section>
+
+    <!-- ============ ATLAS 3D ============ -->
+    <section id="atlas" class="view" aria-labelledby="atlas-titulo">
+      <h2 id="atlas-titulo" class="section-title">Atlas 3D</h2>
+
+      <div class="atlas-layout">
+        <div class="viewer-column">
+          <div class="breed-selector" id="breed-selector" role="group" aria-label="Escolher raça">
+            <button type="button" class="breed-btn" data-breed="nelore" aria-pressed="true"><span class="breed-btn-animal">Trovão</span><span class="breed-btn-breed">Nelore</span></button>
+            <button type="button" class="breed-btn" data-breed="angus" aria-pressed="false"><span class="breed-btn-animal">Ônix</span><span class="breed-btn-breed">Aberdeen Angus</span></button>
+            <button type="button" class="breed-btn" data-breed="brahman" aria-pressed="false"><span class="breed-btn-animal">Rajá</span><span class="breed-btn-breed">Brahman</span></button>
+            <button type="button" class="breed-btn" data-breed="hereford" aria-pressed="false"><span class="breed-btn-animal">Pintado</span><span class="breed-btn-breed">Hereford</span></button>
+            <button type="button" class="breed-btn" data-breed="jersey" aria-pressed="false"><span class="breed-btn-animal">Boneca</span><span class="breed-btn-breed">Jersey</span></button>
+          </div>
+
+          <div class="viewer" id="viewer">
+            <canvas id="viewer-canvas" tabindex="0" aria-label="Modelo 3D do animal selecionado. Arraste para girar, role para ampliar. Setas do teclado giram o modelo."></canvas>
+            <p class="viewer-title" id="viewer-title" aria-live="polite">Trovão · Nelore</p>
+            <div class="viewer-loading" id="viewer-loading" role="status" hidden>
+              <span class="spinner" aria-hidden="true"></span>
+              <span id="viewer-loading-text">Carregando modelo…</span>
+            </div>
+            <div class="viewer-error" id="viewer-error" role="alert" hidden>
+              <p id="viewer-error-text"></p>
+              <button type="button" class="btn" id="viewer-retry">Tentar novamente</button>
+            </div>
+          </div>
+
+          <div class="viewer-controls" role="group" aria-label="Controles da câmera">
+            <button type="button" class="btn" id="btn-rotate-left" aria-label="Girar para a esquerda">Girar esquerda</button>
+            <button type="button" class="btn" id="btn-rotate-right" aria-label="Girar para a direita">Girar direita</button>
+            <button type="button" class="btn" id="btn-zoom-in">Aproximar</button>
+            <button type="button" class="btn" id="btn-zoom-out">Afastar</button>
+            <button type="button" class="btn" id="btn-autorotate" aria-pressed="false">Rotação automática</button>
+            <button type="button" class="btn" id="btn-reset-view">Enquadrar</button>
+          </div>
+        </div>
+
+        <aside class="info-panel" id="breed-info" aria-labelledby="breed-info-title" aria-live="polite">
+          <h3 id="breed-info-title">Trovão · Nelore</h3>
+          <dl class="spec-list">
+            <div><dt>Aptidão</dt><dd data-info="aptitude">Corte</dd></div>
+            <div><dt>Origem</dt><dd data-info="origin">—</dd></div>
+            <div><dt>Morfologia</dt><dd data-info="morphology">—</dd></div>
+          </dl>
+          <p><a href="#racas" data-section="racas" id="breed-info-link">Ver ficha completa</a></p>
+          <p class="info-note">Trovão, Ônix, Rajá, Pintado e Boneca são nomes dos modelos nesta interface, não animais registrados.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ ANATOMIA ============ -->
+    <section id="anatomia" class="view" aria-labelledby="anatomia-titulo">
+      <h2 id="anatomia-titulo" class="section-title">Anatomia</h2>
+      <p class="lead">Escolha um sistema, depois uma estrutura. Anatomia externa e interna aparecem separadas.</p>
+
+      <div class="anatomy-layout">
+        <nav class="system-list" id="anatomy-systems" aria-label="Sistemas anatômicos">
+          <p class="loading-text" data-loading>Carregando sistemas…</p>
+        </nav>
+
+        <div class="structure-list" id="anatomy-structures" aria-live="polite">
+          <h3 id="anatomy-structures-title">Estruturas</h3>
+          <ul id="anatomy-structures-items">
+            <li class="empty-text">Escolha um sistema para ver as estruturas.</li>
+          </ul>
+        </div>
+
+        <article class="science-panel" id="anatomy-detail" aria-labelledby="anatomy-detail-title" aria-live="polite">
+          <h3 id="anatomy-detail-title">Identificação da estrutura</h3>
+          <p class="empty-text">Escolha uma estrutura para ver função, localização e referências.</p>
+        </article>
+      </div>
+
+      <div class="layers-slot" id="anatomy-layers">
+        <h3>Camadas anatômicas 3D</h3>
+        <p>Indisponível nesta versão. Exige modelos anatômicos licenciados com geometria correspondente; não serão criados pontos de identificação sobre os modelos externos.</p>
+      </div>
+    </section>
+
+    <!-- ============ NUTRIÇÃO ============ -->
+    <section id="nutricao" class="view" aria-labelledby="nutricao-titulo">
+      <h2 id="nutricao-titulo" class="section-title">Nutrição</h2>
+      <p class="lead">Nutrientes, funções, fontes e consequências da deficiência.</p>
+
+      <form class="search-bar" id="nutrition-form" role="search" aria-label="Buscar nutrientes" onsubmit="return false">
+        <div class="field field-grow">
+          <label for="nutrition-search">Buscar</label>
+          <input type="search" id="nutrition-search" name="q" placeholder="Nutriente, função, fonte ou sinal clínico" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="nutrition-class">Classe</label>
+          <select id="nutrition-class" name="classe">
+            <option value="">Todas</option>
+            <option value="macromineral">Macrominerais</option>
+            <option value="microelemento">Microelementos</option>
+            <option value="vitamina">Vitaminas</option>
+            <option value="energia">Energia</option>
+            <option value="proteina">Proteína</option>
+            <option value="agua">Água</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="nutrition-evidence">Evidência</label>
+          <select id="nutrition-evidence" name="evidencia">
+            <option value="">Todas</option>
+            <option value="consolidada">Consolidada</option>
+            <option value="associacao">Associação clínica</option>
+            <option value="hipotese">Hipótese</option>
+          </select>
+        </div>
+        <button type="reset" class="btn" id="nutrition-clear">Limpar</button>
+      </form>
+
+      <p class="result-count" id="nutrition-count" role="status" aria-live="polite"></p>
+
+      <div class="nutrition-layout">
+        <ul class="nutrient-list" id="nutrient-list" aria-label="Lista de nutrientes">
+          <li class="loading-text" data-loading>Carregando nutrientes…</li>
+        </ul>
+
+        <article class="science-panel" id="nutrient-detail" aria-labelledby="nutrient-detail-title" aria-live="polite">
+          <h3 id="nutrient-detail-title">Detalhes do nutriente</h3>
+          <p class="empty-text">Escolha um nutriente para ver função, fontes, deficiência, fatores de risco e referências.</p>
+        </article>
+      </div>
+
+      <aside class="science-note" aria-label="Aviso clínico">
+        <p>A deficiência de um nutriente não é atribuída a uma raça. Idade, sexo, categoria produtiva, dieta, solo e ambiente influenciam o quadro. Sinais clínicos não fecham diagnóstico.</p>
+      </aside>
+    </section>
+
+    <!-- ============ MINI ATLAS DAS RAÇAS ============ -->
+    <section id="racas" class="view" aria-labelledby="racas-titulo">
+      <h2 id="racas-titulo" class="section-title">Mini atlas das raças</h2>
+      <p class="lead">Cinco fichas. Quatro de corte e uma de leite (Jersey, mantida para comparação).</p>
+
+      <div class="breed-cards">
+        <article class="breed-card" id="breed-nelore" aria-labelledby="breed-nelore-title">
+          <figure class="photo-slot" data-photo="nelore"><p class="photo-pending">Foto de referência pendente.</p><figcaption>Nelore</figcaption></figure>
+          <h3 id="breed-nelore-title">Trovão · Nelore</h3>
+          <p class="tag tag-corte">Corte</p>
+          <dl class="spec-list">
+            <div><dt>Origem</dt><dd>Zebuíno (<i>Bos indicus</i>), de gado indiano e selecionado no Brasil.</dd></div>
+            <div><dt>Morfologia</dt><dd data-field="morphology">Pendente de verificação.</dd></div>
+            <div><dt>Produção</dt><dd data-field="production">Pendente de verificação.</dd></div>
+            <div><dt>Particularidades</dt><dd data-field="notes">Pendente de verificação.</dd></div>
+            <div><dt>Referências</dt><dd data-field="references">Pendente de verificação.</dd></div>
+          </dl>
+        </article>
+
+        <article class="breed-card" id="breed-angus" aria-labelledby="breed-angus-title">
+          <figure class="photo-slot" data-photo="angus"><p class="photo-pending">Foto de referência pendente.</p><figcaption>Aberdeen Angus</figcaption></figure>
+          <h3 id="breed-angus-title">Ônix · Aberdeen Angus</h3>
+          <p class="tag tag-corte">Corte</p>
+          <dl class="spec-list">
+            <div><dt>Origem</dt><dd>Taurino (<i>Bos taurus</i>), originário da Escócia.</dd></div>
+            <div><dt>Morfologia</dt><dd data-field="morphology">Pendente de verificação.</dd></div>
+            <div><dt>Produção</dt><dd data-field="production">Pendente de verificação.</dd></div>
+            <div><dt>Particularidades</dt><dd data-field="notes">Pendente de verificação.</dd></div>
+            <div><dt>Referências</dt><dd data-field="references">Pendente de verificação.</dd></div>
+          </dl>
+        </article>
+
+        <article class="breed-card" id="breed-brahman" aria-labelledby="breed-brahman-title">
+          <figure class="photo-slot" data-photo="brahman"><p class="photo-pending">Foto de referência pendente.</p><figcaption>Brahman</figcaption></figure>
+          <h3 id="breed-brahman-title">Rajá · Brahman</h3>
+          <p class="tag tag-corte">Corte</p>
+          <dl class="spec-list">
+            <div><dt>Origem</dt><dd>Zebuíno (<i>Bos indicus</i>), formado nos Estados Unidos a partir de gado indiano.</dd></div>
+            <div><dt>Morfologia</dt><dd data-field="morphology">Pendente de verificação.</dd></div>
+            <div><dt>Produção</dt><dd data-field="production">Pendente de verificação.</dd></div>
+            <div><dt>Particularidades</dt><dd data-field="notes">Pendente de verificação.</dd></div>
+            <div><dt>Referências</dt><dd data-field="references">Pendente de verificação.</dd></div>
+          </dl>
+        </article>
+
+        <article class="breed-card" id="breed-hereford" aria-labelledby="breed-hereford-title">
+          <figure class="photo-slot" data-photo="hereford"><p class="photo-pending">Foto de referência pendente.</p><figcaption>Hereford</figcaption></figure>
+          <h3 id="breed-hereford-title">Pintado · Hereford</h3>
+          <p class="tag tag-corte">Corte</p>
+          <dl class="spec-list">
+            <div><dt>Origem</dt><dd>Taurino (<i>Bos taurus</i>), originário da Inglaterra (Herefordshire).</dd></div>
+            <div><dt>Morfologia</dt><dd data-field="morphology">Pendente de verificação.</dd></div>
+            <div><dt>Produção</dt><dd data-field="production">Pendente de verificação.</dd></div>
+            <div><dt>Particularidades</dt><dd data-field="notes">Pendente de verificação.</dd></div>
+            <div><dt>Referências</dt><dd data-field="references">Pendente de verificação.</dd></div>
+          </dl>
+        </article>
+
+        <article class="breed-card" id="breed-jersey" aria-labelledby="breed-jersey-title">
+          <figure class="photo-slot" data-photo="jersey"><p class="photo-pending">Foto de referência pendente.</p><figcaption>Jersey</figcaption></figure>
+          <h3 id="breed-jersey-title">Boneca · Jersey</h3>
+          <p class="tag tag-leite">Leite</p>
+          <dl class="spec-list">
+            <div><dt>Origem</dt><dd>Taurino (<i>Bos taurus</i>), originário da Ilha de Jersey, no Canal da Mancha.</dd></div>
+            <div><dt>Morfologia</dt><dd data-field="morphology">Pendente de verificação.</dd></div>
+            <div><dt>Produção</dt><dd data-field="production">Pendente de verificação.</dd></div>
+            <div><dt>Particularidades</dt><dd data-field="notes">Pendente de verificação.</dd></div>
+            <div><dt>Referências</dt><dd data-field="references">Pendente de verificação.</dd></div>
+          </dl>
+        </article>
+      </div>
+
+      <section class="compare" id="compare" aria-labelledby="compare-title">
+        <h3 id="compare-title">Comparar raças</h3>
+        <div class="compare-controls">
+          <div class="field">
+            <label for="compare-a">Primeira raça</label>
+            <select id="compare-a"></select>
+          </div>
+          <div class="field">
+            <label for="compare-b">Segunda raça</label>
+            <select id="compare-b"></select>
+          </div>
+        </div>
+        <div class="table-wrap" id="compare-result" role="region" aria-label="Resultado da comparação" aria-live="polite" tabindex="0">
+          <p class="empty-text">Escolha duas raças para comparar.</p>
+        </div>
+      </section>
+
+      <!-- ===== Painel comparativo (dossiê PESQ-001) ===== -->
+      <section class="dossier" id="graficos" aria-labelledby="graficos-title">
+        <h3 id="graficos-title">Painel comparativo</h3>
+        <p class="lead">Dados do dossiê PESQ-001. Campos sem fonte aparecem como pendentes e nenhum número foi estimado. Selecionar uma raça em qualquer gráfico a destaca nas fichas e no cercado.</p>
+        <div class="chart-grid">
+          <figure class="chart-card" id="chart-aptitude"><figcaption>Gráfico 1: aptidão produtiva</figcaption><div data-chart></div></figure>
+          <figure class="chart-card chart-wide" id="chart-morph"><figcaption>Gráfico 2: características morfológicas</figcaption><div data-chart></div></figure>
+          <figure class="chart-card chart-wide" id="chart-diff"><figcaption>Gráfico 3: comparação de características</figcaption><div data-chart></div></figure>
+          <figure class="chart-card" id="chart-zoo"><figcaption>Gráfico 4: dados zootécnicos (reservado)</figcaption><div data-chart></div></figure>
+        </div>
+      </section>
+
+      <!-- ===== Mini cercado ===== -->
+      <section class="farm" id="cercado" aria-labelledby="cercado-title">
+        <h3 id="cercado-title">Mini cercado</h3>
+        <p class="lead">Simulação 2D de uma fazenda. Os cinco animais seguem comportamentos genéricos de bovinos (repouso, caminhada, alimentação, hidratação e exploração), iguais para todas as raças.</p>
+        <div class="farm-layout">
+          <div class="farm-stage">
+            <canvas id="farm-canvas" aria-label="Cercado com cinco bovinos em movimento: Trovão, Ônix, Rajá, Pintado e Boneca. Use a lista ao lado para selecionar animais."></canvas>
+            <div class="viewer-controls" role="group" aria-label="Controles da simulação">
+              <button type="button" class="btn" id="farm-toggle" aria-pressed="false">Pausar</button>
+              <button type="button" class="btn" id="farm-reset">Reiniciar</button>
+            </div>
+          </div>
+          <div class="farm-side">
+            <h4>Animais</h4>
+            <ul class="farm-legend" id="farm-legend" aria-label="Legenda dos animais"></ul>
+            <div class="info-panel" id="farm-info" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sources" id="fontes" aria-labelledby="fontes-title">
+        <h3 id="fontes-title">Fontes do dossiê PESQ-001</h3>
+        <p>Fontes institucionais (Embrapa, universidades) e secundárias estão identificadas. Detalhes e pendências em <a href="docs/PESQ-001.md">docs/PESQ-001.md</a>.</p>
+        <ol class="refs" id="sources-list"></ol>
+      </section>
+    </section>
+  </main>
+
+  <!-- ============ RODAPÉ ============ -->
+  <footer class="site-footer">
+    <p><strong>Octó Vet | Bovine Atlas</strong> · Protótipo 000 · Octóviun Studios</p>
+    <p>Uso educacional. Não substitui avaliação veterinária profissional.</p>
+    <p>Créditos de modelos 3D e imagens: <a href="CREDITS.md">CREDITS.md</a></p>
+    <p><a href="#topo">Voltar ao topo</a></p>
+  </footer>
+</body>
+</html>

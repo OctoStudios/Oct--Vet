@@ -1,0 +1,687 @@
+{
+ "meta": {
+  "id": "PESQ-001",
+  "title": "Dossiê Comparativo de Raças Bovinas",
+  "version": "0.1",
+  "accessed": "2026-11-07",
+  "scale": {
+   "consolidada": "Sustentada por fonte institucional (Embrapa, universidade).",
+   "associacao": "Apenas fontes secundárias (portais, indústria, associações).",
+   "hipotese": "Relato histórico ou hipótese ('acredita-se').",
+   "pendente": "Sem fonte verificada."
+  }
+ },
+ "sources": {
+  "S1": {
+   "title": "A pecuária de corte no Brasil: características morfológicas e produtivas da raça Nelore",
+   "org": "Embrapa (Azevêdo, D.M.M.R.)",
+   "year": "2007",
+   "url": "https://www.infoteca.cnptia.embrapa.br/handle/doc/69545",
+   "type": "institucional"
+  },
+  "S2": {
+   "title": "Conheça os “pais” do Nelore (padrão da raça)",
+   "org": "Compre Rural",
+   "year": "s.d.",
+   "url": "https://www.comprerural.com/conheca-os-pais-do-nelore-visionarios-que-trouxeram-e-moldaram-a-raca-no-brasil/",
+   "type": "secundária"
+  },
+  "S3": {
+   "title": "Nelore, Brahman e Tabapuã: veja as diferenças das raças",
+   "org": "Compre Rural",
+   "year": "s.d.",
+   "url": "https://comprerural.com/nelore-brahman-e-tabapua-veja-as-diferencas-das-racas/",
+   "type": "secundária"
+  },
+  "S4": {
+   "title": "PAC Embrapa-Angus 2013-2014 (4ª Prova de Avaliação a Campo de Reprodutores da Raça Angus)",
+   "org": "Embrapa Pecuária Sul",
+   "year": "2014",
+   "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1012703/1/Documentos13615online.pdf",
+   "type": "institucional"
+  },
+  "S5": {
+   "title": "Pôster Angus (série Raças)",
+   "org": "Zoetis",
+   "year": "s.d.",
+   "url": "https://www.zoetis.com.br/_locale-assets/arquivos/bovinos/terramicina-la-racas/terramicina-la-poster-angus.pdf",
+   "type": "secundária"
+  },
+  "S6": {
+   "title": "Cap. 2, Recursos Genéticos (Curso Geneplus)",
+   "org": "Embrapa",
+   "year": "2018",
+   "url": "https://cloud.cnpgc.embrapa.br/geneplus30/files/2018/07/Cap02_RecursosGeneticos.pdf",
+   "type": "institucional"
+  },
+  "S7": {
+   "title": "Gado Brahman",
+   "org": "InfoEscola",
+   "year": "s.d.",
+   "url": "https://www.infoescola.com/pecuaria/gado-brahman/",
+   "type": "secundária"
+  },
+  "S8": {
+   "title": "Raridade genética ou estratégia de mercado: o caso do Brahman preto mexicano",
+   "org": "Compre Rural",
+   "year": "2026",
+   "url": "https://comprerural.com/raridade-genetica-ou-estrategia-de-mercado-o-caso-do-brahman-preto-mexicano/",
+   "type": "secundária"
+  },
+  "S9": {
+   "title": "Documento técnico DT85 sobre a raça Hereford (título exato a confirmar)",
+   "org": "Embrapa",
+   "year": "s.d.",
+   "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/661592/4/DT85.pdf",
+   "type": "institucional"
+  },
+  "S10": {
+   "title": "Hereford x Simental: parecem, mas não são iguais",
+   "org": "Compre Rural",
+   "year": "s.d.",
+   "url": "https://www.comprerural.com/hereford-x-simental-parecem-mas-nao-sao-iguais/",
+   "type": "secundária"
+  },
+  "S11": {
+   "title": "Resumo PROCI2003.00127 sobre Hereford (título exato a confirmar)",
+   "org": "Embrapa (Alice)",
+   "year": "2003",
+   "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/46644/1/PROCI2003.00127.pdf",
+   "type": "institucional"
+  },
+  "S12": {
+   "title": "Programa de Melhoramento Genético da Raça Jersey, 1º Sumário de Avaliação (Documentos 272)",
+   "org": "Embrapa Gado de Leite",
+   "year": "2023",
+   "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1152953",
+   "type": "institucional"
+  },
+  "S13": {
+   "title": "Frequências alélica e genotípica para a característica Mocho e Beta Caseína na raça Jersey",
+   "org": "Embrapa Gado de Leite (Anais do XXVII Workshop de IC)",
+   "year": "s.d.",
+   "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1163599/1/Frequencias-alelica-e-genotipica-para-a-caracteristica-Mocho-e-Beta.pdf",
+   "type": "institucional"
+  },
+  "S14": {
+   "title": "Gado Jersey",
+   "org": "InfoEscola",
+   "year": "s.d.",
+   "url": "https://www.infoescola.com/pecuaria/gado-jersey/",
+   "type": "secundária"
+  },
+  "S15": {
+   "title": "Jersey, a raça do pequeno produtor",
+   "org": "Compre Rural",
+   "year": "s.d.",
+   "url": "https://comprerural.com/jersey-raca-do-pequeno-produtor/",
+   "type": "secundária"
+  },
+  "S16": {
+   "title": "Gado Hereford",
+   "org": "InfoEscola",
+   "year": "s.d.",
+   "url": "https://www.infoescola.com/pecuaria/gado-hereford/",
+   "type": "secundária"
+  },
+  "S17": {
+   "title": "Bos taurus vs Bos indicus: separados há 2 mi de anos",
+   "org": "Compre Rural",
+   "year": "s.d.",
+   "url": "https://comprerural.com/bos-taurus-vs-bos-indicus-separados-ha-2-mi-de-anos/",
+   "type": "secundária"
+  },
+  "S18": {
+   "title": "A pecuária de corte no Brasil: características morfológicas e produtivas da raça Nelore (reprodução do artigo)",
+   "org": "Agrolink",
+   "year": "2007",
+   "url": "https://www.agrolink.com.br/colunistas/a-pecuaria-de-corte-no-brasil--caracteristicas-morfologicas-e-produtivas-da-raca-nelore_385143.html",
+   "type": "secundária"
+  },
+  "S19": {
+   "title": "Nelore: raça que originou o maior rebanho do Brasil",
+   "org": "Compre Rural",
+   "year": "s.d.",
+   "url": "https://comprerural.com/nelore-raca-que-originou-maior-rebanho-do-brasil/",
+   "type": "secundária"
+  },
+  "S20": {
+   "title": "Nelore, pai da pecuária brasileira",
+   "org": "Compre Rural",
+   "year": "s.d.",
+   "url": "https://comprerural.com/nelore-pai-da-pecuaria-brasileira/",
+   "type": "secundária"
+  },
+  "S21": {
+   "title": "Termotolerância em Angus: pelagem e pelame (projeto SIIEPE 2024)",
+   "org": "UFPel",
+   "year": "2024",
+   "url": "https://cti.ufpel.edu.br/siiepe/arquivos/2024/CA_05432.pdf",
+   "type": "institucional"
+  },
+  "S22": {
+   "title": "Brahman vermelho é destaque na Feicorte",
+   "org": "Revista Cultivar",
+   "year": "s.d.",
+   "url": "https://www.revistacultivar.com.br/noticias/brahman-vermelho-e-destaque-na-feicorte",
+   "type": "secundária"
+  },
+  "S23": {
+   "title": "Manso: a origem da linhagem que redefiniu o Brahman americano",
+   "org": "Compre Rural",
+   "year": "s.d.",
+   "url": "https://comprerural.com/manso-a-origem-da-linhagem-que-redefiniu-o-brahman-americano/",
+   "type": "secundária"
+  },
+  "S24": {
+   "title": "Brahman: o gigante que transformou a pecuária dos Estados Unidos",
+   "org": "Compre Rural",
+   "year": "s.d.",
+   "url": "https://comprerural.com/brahman-o-gigante-que-transformou-a-pecuaria-dos-estados-unidos/",
+   "type": "secundária"
+  },
+  "S25": {
+   "title": "Conheça as principais características do boi Angus",
+   "org": "Corteva",
+   "year": "2025",
+   "url": "https://www.corteva.com/br/coeficiente-agro/boi-angus.html",
+   "type": "secundária"
+  },
+  "S26": {
+   "title": "Boi Brahman é opção para pequeno produtor",
+   "org": "Compre Rural",
+   "year": "s.d.",
+   "url": "https://comprerural.com/boi-brahman-e-opcao-para-pequeno-produtor/",
+   "type": "secundária"
+  },
+  "S27": {
+   "title": "Equilíbrio e qualidade da carne destacam animais da raça Hereford",
+   "org": "Canal Rural",
+   "year": "s.d.",
+   "url": "https://www.canalrural.com.br/projetos/equilibrio-qualidade-carne-destacam-animais-raca-hereford-36803/",
+   "type": "secundária"
+  }
+ },
+ "breeds": [
+  {
+   "id": "nelore",
+   "name": "Nelore",
+   "animal": "Trovão",
+   "aptitude": "corte",
+   "fields": {
+    "taxon": {
+     "v": "Bos indicus (zebuíno). Nomenclatura varia entre fontes (Bos indicus ou Bos taurus indicus). Convenção a confirmar em referência taxonômica.",
+     "s": [
+      "S17"
+     ],
+     "e": "associacao",
+     "short": "Zebuíno"
+    },
+    "origem": {
+     "v": "Índia (raça Ongole, distrito de Ongole, costa oriental). Registro genealógico brasileiro iniciado em 1938.",
+     "s": [
+      "S1",
+      "S18"
+     ],
+     "e": "consolidada",
+     "short": "Índia"
+    },
+    "aptidao": {
+     "v": "Corte no Brasil; na origem, não era selecionada para corte.",
+     "s": [
+      "S1",
+      "S18"
+     ],
+     "e": "consolidada",
+     "short": "Corte"
+    },
+    "pelagem": {
+     "v": "Curta, branca ou cinza-clara; machos costumam ter pescoço e cupim mais escuros.",
+     "s": [
+      "S2",
+      "S3"
+     ],
+     "e": "associacao",
+     "short": "Branca / cinza-clara"
+    },
+    "pele": {
+     "v": "Preta ou escura, solta, fina e flexível.",
+     "s": [
+      "S3"
+     ],
+     "e": "associacao",
+     "short": "Escura"
+    },
+    "cupim": {
+     "v": "Presente. Grande e apoiado sobre a cernelha nos machos; reduzido nas fêmeas. Atua como reserva de energia.",
+     "s": [
+      "S2"
+     ],
+     "e": "associacao",
+     "short": "Presente",
+     "cat": "presente"
+    },
+    "barbela": {
+     "v": "Desenvolvida, do maxilar inferior ao umbigo; maior e mais pregueada nos machos.",
+     "s": [
+      "S2"
+     ],
+     "e": "associacao",
+     "short": "Desenvolvida",
+     "cat": "presente"
+    },
+    "orelhas": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "chifres": {
+     "v": "Variável: há animais com chifres e animais mochos.",
+     "s": [
+      "S19"
+     ],
+     "e": "associacao",
+     "short": "Variável",
+     "cat": "variavel"
+    },
+    "conformacao": {
+     "v": "Ossatura leve, robusta, com musculatura compacta e bem distribuída (descrição de padrão racial).",
+     "s": [
+      "S20"
+     ],
+     "e": "associacao",
+     "short": "Compacta"
+    },
+    "adaptacao": {
+     "v": "Resistência ao calor, descrita como característica importante e de origem genética.",
+     "s": [
+      "S1",
+      "S18"
+     ],
+     "e": "consolidada"
+    },
+    "particularidades": {
+     "v": "Raça zebuína predominante no rebanho de corte brasileiro. O percentual (cerca de 80%) circula em portais e não foi verificado em fonte primária.",
+     "s": [
+      "S2"
+     ],
+     "e": "associacao"
+    }
+   }
+  },
+  {
+   "id": "angus",
+   "name": "Aberdeen Angus",
+   "animal": "Ônix",
+   "aptitude": "corte",
+   "fields": {
+    "taxon": {
+     "v": "Bos taurus (taurino)",
+     "s": [
+      "S17"
+     ],
+     "e": "associacao",
+     "short": "Taurino"
+    },
+    "origem": {
+     "v": "Escócia, condados de Aberdeen e Angus; reconhecida oficialmente em 1835.",
+     "s": [
+      "S4"
+     ],
+     "e": "consolidada",
+     "short": "Escócia"
+    },
+    "aptidao": {
+     "v": "Corte, com destaque para qualidade da carne.",
+     "s": [
+      "S4",
+      "S5"
+     ],
+     "e": "consolidada",
+     "short": "Corte"
+    },
+    "pelagem": {
+     "v": "Uniforme, preta (Aberdeen Angus) ou vermelha (Red Angus). A cor preta é dominante sobre a vermelha.",
+     "s": [
+      "S5",
+      "S6"
+     ],
+     "e": "consolidada",
+     "short": "Preta / vermelha"
+    },
+    "pele": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "cupim": {
+     "v": "Ausente (grupo taurino).",
+     "s": [
+      "S17"
+     ],
+     "e": "associacao",
+     "short": "Ausente",
+     "cat": "ausente"
+    },
+    "barbela": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "orelhas": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "chifres": {
+     "v": "Ausentes (animais naturalmente mochos).",
+     "s": [
+      "S5"
+     ],
+     "e": "associacao",
+     "short": "Ausentes",
+     "cat": "ausente"
+    },
+    "conformacao": {
+     "v": "Porte médio a grande.",
+     "s": [
+      "S5"
+     ],
+     "e": "associacao",
+     "short": "Médio a grande"
+    },
+    "adaptacao": {
+     "v": "Estudo em andamento na UFPel relaciona pelame e pelagem à termotolerância; o pelame pesa mais que a cor, segundo o projeto.",
+     "s": [
+      "S21"
+     ],
+     "e": "associacao"
+    },
+    "particularidades": {
+     "v": "Muito usada em cruzamento industrial no Brasil (informação de associação e indústria).",
+     "s": [
+      "S25"
+     ],
+     "e": "associacao"
+    }
+   }
+  },
+  {
+   "id": "brahman",
+   "name": "Brahman",
+   "animal": "Rajá",
+   "aptitude": "corte",
+   "fields": {
+    "taxon": {
+     "v": "Bos indicus (zebuíno). Nomenclatura varia entre fontes (Bos indicus ou Bos taurus indicus). Convenção a confirmar em referência taxonômica.",
+     "s": [
+      "S17"
+     ],
+     "e": "associacao",
+     "short": "Zebuíno"
+    },
+    "origem": {
+     "v": "Estados Unidos, a partir de zebuínos (Nelore, Guzerá, Gir e Krishna Valley). Reconhecida oficialmente em 1924.",
+     "s": [
+      "S7",
+      "S22",
+      "S23"
+     ],
+     "e": "associacao",
+     "short": "Estados Unidos"
+    },
+    "aptidao": {
+     "v": "Corte; base de cruzamentos industriais de corte nos Estados Unidos.",
+     "s": [
+      "S24"
+     ],
+     "e": "associacao",
+     "short": "Corte"
+    },
+    "pelagem": {
+     "v": "Duas variações reconhecidas: cinza (de muito claro a grafite) e vermelha. Touros têm mais pigmento no pescoço e no cupim.",
+     "s": [
+      "S8"
+     ],
+     "e": "associacao",
+     "short": "Cinza / vermelha"
+    },
+    "pele": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "cupim": {
+     "v": "Presente (zebuíno).",
+     "s": [
+      "S7",
+      "S17"
+     ],
+     "e": "associacao",
+     "short": "Presente",
+     "cat": "presente"
+    },
+    "barbela": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "orelhas": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "chifres": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "conformacao": {
+     "v": "Mais baixo e compacto que o zebu indiano, com corpo mais profundo e musculoso.",
+     "s": [
+      "S7"
+     ],
+     "e": "associacao",
+     "short": "Compacta"
+    },
+    "adaptacao": {
+     "v": "Estabeleceu-se no sul dos Estados Unidos, região adversa para raças europeias.",
+     "s": [
+      "S3"
+     ],
+     "e": "associacao"
+    },
+    "particularidades": {
+     "v": "Introduzida oficialmente no Brasil em 1994.",
+     "s": [
+      "S26"
+     ],
+     "e": "associacao"
+    }
+   }
+  },
+  {
+   "id": "hereford",
+   "name": "Hereford",
+   "animal": "Pintado",
+   "aptitude": "corte",
+   "fields": {
+    "taxon": {
+     "v": "Bos taurus (taurino)",
+     "s": [
+      "S17"
+     ],
+     "e": "associacao",
+     "short": "Taurino"
+    },
+    "origem": {
+     "v": "Herefordshire, Inglaterra; aceita como raça independente na década de 1770.",
+     "s": [
+      "S11"
+     ],
+     "e": "consolidada",
+     "short": "Inglaterra"
+    },
+    "aptidao": {
+     "v": "Corte.",
+     "s": [
+      "S9"
+     ],
+     "e": "consolidada",
+     "short": "Corte"
+    },
+    "pelagem": {
+     "v": "Predominantemente vermelha, com cara, ventre e extremidades (cauda e patas) brancos, o padrão chamado pampa.",
+     "s": [
+      "S9",
+      "S10"
+     ],
+     "e": "associacao",
+     "short": "Vermelha, cara branca"
+    },
+    "pele": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "cupim": {
+     "v": "Ausente (grupo taurino).",
+     "s": [
+      "S17"
+     ],
+     "e": "associacao",
+     "short": "Ausente",
+     "cat": "ausente"
+    },
+    "barbela": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "orelhas": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "chifres": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "conformacao": {
+     "v": "Porte médio.",
+     "s": [
+      "S16"
+     ],
+     "e": "associacao",
+     "short": "Médio"
+    },
+    "adaptacao": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "particularidades": {
+     "v": "A cara branca é dominante nos cruzamentos e persiste em mestiços por gerações. Fontes divergem sobre a chegada ao Brasil: registro em 1907 (Embrapa) e chegada em 1906 (Canal Rural).",
+     "s": [
+      "S9",
+      "S10",
+      "S27"
+     ],
+     "e": "associacao"
+    }
+   }
+  },
+  {
+   "id": "jersey",
+   "name": "Jersey",
+   "animal": "Boneca",
+   "aptitude": "leite",
+   "fields": {
+    "taxon": {
+     "v": "Bos taurus (taurino)",
+     "s": [
+      "S17"
+     ],
+     "e": "associacao",
+     "short": "Taurino"
+    },
+    "origem": {
+     "v": "Ilha de Jersey, no Canal da Mancha, entre Inglaterra e França.",
+     "s": [
+      "S13",
+      "S14"
+     ],
+     "e": "consolidada",
+     "short": "Ilha de Jersey"
+    },
+    "aptidao": {
+     "v": "Leite. Raça especial do projeto, mantida para comparação.",
+     "s": [
+      "S12",
+      "S13"
+     ],
+     "e": "consolidada",
+     "short": "Leite"
+    },
+    "pelagem": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "pele": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "cupim": {
+     "v": "Ausente (grupo taurino).",
+     "s": [
+      "S17"
+     ],
+     "e": "associacao",
+     "short": "Ausente",
+     "cat": "ausente"
+    },
+    "barbela": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "orelhas": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "chifres": {
+     "v": null,
+     "s": [],
+     "e": "pendente"
+    },
+    "conformacao": {
+     "v": "Porte pequeno.",
+     "s": [
+      "S14"
+     ],
+     "e": "associacao",
+     "short": "Pequeno"
+    },
+    "adaptacao": {
+     "v": "Tolerância ao calor citada entre as principais características (Embrapa).",
+     "s": [
+      "S13"
+     ],
+     "e": "consolidada"
+    },
+    "particularidades": {
+     "v": "Relato histórico atribui a origem ao cruzamento do gado negro da Bretanha com bovinos vermelhos da Normandia (“acredita-se”). A Embrapa estuda a característica mocho na raça.",
+     "s": [
+      "S13",
+      "S15"
+     ],
+     "e": "hipotese"
+    }
+   }
+  }
+ ]
+}

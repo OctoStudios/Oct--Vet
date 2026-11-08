@@ -1,0 +1,340 @@
+/* ==========================================================================
+   OCTÓ VET | BOVINE ATLAS · Protótipo 000 · css/style.css
+   Diário de campo + história natural + documentação veterinária.
+   Paleta oficial: Palha, Areia, Terra, Oliva, Mata.
+   Tons derivados (texto, erro, superfícies claras) estão marcados como "derivado".
+
+   Contrato com o JS (classes que os módulos devem usar ao gerar conteúdo):
+   .system-list button | .structure-list li button | .nutrient-list li button
+   [aria-pressed="true"] ou [aria-current="true"] = item ativo
+   .evidence + .evidence-consolidada | .evidence-associacao | .evidence-hipotese
+   .refs > li | .ref-pending | .photo-slot img | .is-active | nav [aria-current="page"]
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&family=Rye&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap");
+
+/* ---------- 1. Variáveis ---------- */
+:root {
+  /* Paleta oficial */
+  --palha: #F2E8D5;
+  --areia: #A58B65;
+  --terra: #79543B;
+  --oliva: #65734B;
+  --mata: #354C36;
+
+  /* Derivados */
+  --palha-claro: #FAF5E9;
+  --palha-escuro: #E6D9BF;
+  --ink: #2B2A1F;
+  --oliva-ink: #4F5B3A;
+  --erro: #8A2F1F;
+  --visor-a: #DDD2BA;
+  --visor-b: #C8BB9C;
+
+  /* Tipografia */
+  --font-brand: "Rye", "Rockwell", "Georgia", serif;
+  --font-title: "Bitter", "Rockwell", "Georgia", serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --fs-sm: 0.875rem;
+  --fs-base: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-h3: 1.3rem;
+  --fs-h2: clamp(1.6rem, 1.2rem + 1.6vw, 2.25rem);
+  --fs-h1: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+
+  /* Espaçamento, bordas, dimensões */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2.5rem;
+  --sp-7: 4rem;
+  --radius: 4px;
+  --border: 1px solid var(--areia);
+  --border-strong: 2px solid var(--terra);
+  --focus: 3px solid var(--terra);
+  --shadow: 0 1px 2px rgba(53, 76, 54, 0.18);
+  --wrap: 78rem;
+  --panel-w: 21rem;
+  --viewer-h: clamp(21rem, 68vh, 42rem);
+  --ease: 160ms ease;
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+body {
+  margin: 0;
+  font: 400 var(--fs-base)/1.6 var(--font-body);
+  color: var(--ink);
+  background-color: var(--palha);
+  /* papel: granulação discreta */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .47 0 0 0 0 .33 0 0 0 0 .23 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+h1, h2, h3 { color: var(--terra); line-height: 1.2; margin: 0 0 var(--sp-3); }
+h1 { font: 400 var(--fs-h1)/1.1 var(--font-brand); letter-spacing: 0.01em; }
+h2 { font: 700 var(--fs-h2)/1.2 var(--font-title); }
+h3 { font: 700 var(--fs-h3)/1.25 var(--font-title); }
+p { margin: 0 0 var(--sp-4); max-width: 68ch; }
+a { color: var(--mata); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--terra); }
+img { max-width: 100%; height: auto; }
+i { font-style: italic; }
+:focus-visible { outline: var(--focus); outline-offset: 2px; }
+main:focus { outline: none; }
+
+.skip-link {
+  position: absolute; left: var(--sp-3); top: -4rem; z-index: 100;
+  background: var(--mata); color: var(--palha); padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--radius); transition: top var(--ease);
+}
+.skip-link:focus { top: var(--sp-3); }
+
+/* ---------- 3. Cabeçalho e navegação ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-5);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--mata); color: var(--palha);
+  /* costura de couro */
+  border-bottom: 3px dashed var(--areia);
+}
+.brand { margin-right: auto; }
+.brand-name { margin: 0; font: 400 1.6rem/1 var(--font-brand); color: var(--palha); letter-spacing: 0.04em; }
+.brand-sub { margin: 2px 0 0; font: 600 var(--fs-sm)/1 var(--font-body); letter-spacing: 0.22em; color: var(--palha-escuro); }
+.main-nav ul { display: flex; flex-wrap: wrap; gap: var(--sp-1); margin: 0; padding: 0; list-style: none; }
+.main-nav a {
+  display: block; padding: var(--sp-2) var(--sp-3);
+  color: var(--palha); text-decoration: none; font-weight: 600;
+  border-bottom: 3px solid transparent; transition: border-color var(--ease);
+}
+.main-nav a:hover { color: var(--palha); border-bottom-color: var(--areia); }
+.main-nav a[aria-current="page"], .main-nav a.is-active { border-bottom-color: var(--palha); }
+.site-header :focus-visible { outline-color: var(--palha); }
+.version-badge {
+  margin: 0; padding: var(--sp-1) var(--sp-3);
+  border: 1px solid var(--areia); border-radius: 999px;
+  font-size: var(--fs-sm); color: var(--palha-escuro);
+}
+
+/* ---------- 4. Estrutura das seções ---------- */
+main { max-width: var(--wrap); margin: 0 auto; padding: var(--sp-5) var(--sp-4) var(--sp-7); }
+.view { padding-top: var(--sp-4); }
+.section-title { padding-bottom: var(--sp-2); border-bottom: var(--border-strong); max-width: 100%; }
+.lead { font-size: var(--fs-lg); line-height: 1.5; }
+.notice, .science-note {
+  padding: var(--sp-3) var(--sp-4); margin: var(--sp-5) 0;
+  background: var(--palha-claro); border: var(--border); border-left: 6px solid var(--oliva);
+  border-radius: var(--radius);
+}
+.notice p, .science-note p { margin: 0; font-size: var(--fs-sm); }
+.empty-text, .loading-text, .photo-pending { color: var(--terra); font-style: italic; }
+.result-count { font-size: var(--fs-sm); margin: var(--sp-3) 0; }
+
+/* ---------- 5. Botões ---------- */
+.btn {
+  font: 600 var(--fs-sm)/1.2 var(--font-body);
+  padding: var(--sp-3) var(--sp-4); min-height: 2.75rem;
+  background: var(--palha-claro); color: var(--mata);
+  border: 2px solid var(--mata); border-radius: var(--radius);
+  cursor: pointer; transition: background var(--ease), color var(--ease);
+}
+.btn:hover { background: var(--palha-escuro); }
+.btn[aria-pressed="true"] { background: var(--mata); color: var(--palha); }
+.btn-primary {
+  display: inline-block; background: var(--mata); color: var(--palha);
+  text-decoration: none; font-size: var(--fs-base); padding: var(--sp-3) var(--sp-5);
+}
+.btn-primary:hover { background: var(--terra); border-color: var(--terra); color: var(--palha); }
+
+/* ---------- 6. Início ---------- */
+.hero { display: grid; gap: var(--sp-5); align-items: center; padding: var(--sp-5) 0 var(--sp-6); }
+.hero-text p { margin-bottom: var(--sp-5); }
+.photo-slot {
+  margin: 0; position: relative; overflow: hidden;
+  aspect-ratio: 4 / 3; display: flex; flex-direction: column; justify-content: flex-end;
+  background: var(--palha-escuro); border: 2px dashed var(--areia); border-radius: var(--radius);
+}
+.photo-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-slot .photo-pending { margin: auto; padding: var(--sp-4); text-align: center; font-size: var(--fs-sm); }
+.photo-slot:has(img) { border-style: solid; }
+.photo-slot:has(img) .photo-pending { display: none; }
+.photo-slot figcaption {
+  position: relative; padding: var(--sp-2) var(--sp-3);
+  font-size: var(--fs-sm); color: var(--palha); background: rgba(53, 76, 54, 0.88);
+}
+.feature-list { display: grid; gap: var(--sp-4); margin: var(--sp-5) 0; padding: 0; list-style: none; }
+.card { padding: var(--sp-4) var(--sp-5); background: var(--palha-claro); border: var(--border); border-top: 4px solid var(--terra); border-radius: var(--radius); box-shadow: var(--shadow); }
+.card h3 { margin-bottom: var(--sp-2); }
+.card p { font-size: var(--fs-sm); }
+
+/* ---------- 7. Atlas 3D ---------- */
+.atlas-layout { display: grid; gap: var(--sp-5); margin-top: var(--sp-4); }
+.viewer-column { min-width: 0; }
+.breed-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); gap: var(--sp-2); margin-bottom: var(--sp-3); }
+.breed-btn {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  padding: var(--sp-2) var(--sp-3); min-height: 3.25rem; text-align: left;
+  font-family: var(--font-body); color: var(--mata); background: var(--palha-claro);
+  border: 2px solid var(--areia); border-radius: var(--radius);
+  cursor: pointer; transition: background var(--ease), border-color var(--ease);
+}
+.breed-btn:hover { border-color: var(--mata); }
+.breed-btn-animal { font: 700 1rem/1.2 var(--font-title); }
+.breed-btn-breed { font-size: var(--fs-sm); }
+.breed-btn[aria-pressed="true"] { background: var(--mata); border-color: var(--mata); color: var(--palha); }
+
+.viewer {
+  position: relative; height: var(--viewer-h); overflow: hidden;
+  background: radial-gradient(ellipse at 50% 40%, var(--visor-a), var(--visor-b));
+  border: var(--border-strong); border-radius: var(--radius);
+}
+.viewer canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+.viewer canvas:active { cursor: grabbing; }
+.viewer-title {
+  position: absolute; left: var(--sp-3); top: var(--sp-3); margin: 0; pointer-events: none;
+  padding: var(--sp-1) var(--sp-3); font: 700 var(--fs-sm)/1.3 var(--font-title);
+  color: var(--palha); background: rgba(53, 76, 54, 0.88); border-radius: var(--radius);
+}
+.viewer-loading, .viewer-error {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: var(--sp-3);
+  padding: var(--sp-5); text-align: center;
+}
+.viewer-loading { flex-direction: row; background: rgba(242, 232, 213, 0.82); color: var(--mata); font-weight: 600; }
+.viewer-error { background: rgba(250, 245, 233, 0.95); color: var(--erro); }
+.viewer-error p { font-weight: 600; margin: 0; }
+.spinner {
+  width: 1.5rem; height: 1.5rem; border: 3px solid var(--areia); border-top-color: var(--mata);
+  border-radius: 50%; animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.viewer-controls { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-3); }
+
+.info-panel { padding: var(--sp-4) var(--sp-5); background: var(--palha-claro); border: var(--border); border-radius: var(--radius); align-self: start; }
+.info-note { font-size: var(--fs-sm); color: var(--terra); margin: var(--sp-4) 0 0; }
+
+/* Lista de especificações (dl) */
+.spec-list { margin: 0 0 var(--sp-4); }
+.spec-list > div { padding: var(--sp-2) 0; border-bottom: 1px dotted var(--areia); }
+.spec-list dt { font: 700 var(--fs-sm)/1.3 var(--font-title); color: var(--terra); }
+.spec-list dd { margin: 2px 0 0; }
+
+/* ---------- 8. Painéis científicos, anatomia, nutrição ---------- */
+.science-panel { padding: var(--sp-4) var(--sp-5); background: var(--palha-claro); border: var(--border); border-left: 6px solid var(--terra); border-radius: var(--radius); }
+.science-panel h4 { font: 700 var(--fs-base)/1.3 var(--font-title); color: var(--mata); margin: var(--sp-4) 0 var(--sp-1); }
+
+.anatomy-layout, .nutrition-layout { display: grid; gap: var(--sp-4); margin: var(--sp-5) 0; }
+.system-list, .structure-list, .nutrient-list { min-width: 0; }
+.system-list { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-content: flex-start; }
+.structure-list ul, .nutrient-list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--sp-2); }
+.system-list button, .structure-list li button, .nutrient-list li button {
+  width: 100%; text-align: left; font: 600 var(--fs-base)/1.3 var(--font-body);
+  padding: var(--sp-3) var(--sp-4); min-height: 2.75rem;
+  color: var(--mata); background: var(--palha-claro);
+  border: 2px solid var(--areia); border-radius: var(--radius);
+  cursor: pointer; transition: background var(--ease), border-color var(--ease);
+}
+.system-list button { width: auto; }
+.system-list button:hover, .structure-list li button:hover, .nutrient-list li button:hover { border-color: var(--mata); }
+.system-list button[aria-pressed="true"], .structure-list li button[aria-pressed="true"], .nutrient-list li button[aria-pressed="true"],
+.system-list button[aria-current="true"], .structure-list li button[aria-current="true"], .nutrient-list li button[aria-current="true"] {
+  background: var(--mata); border-color: var(--mata); color: var(--palha);
+}
+.layers-slot { margin-top: var(--sp-5); padding: var(--sp-4) var(--sp-5); border: 2px dashed var(--areia); border-radius: var(--radius); }
+.layers-slot h3 { font-size: var(--fs-lg); }
+.layers-slot p { margin: 0; font-size: var(--fs-sm); }
+
+/* Nível de evidência */
+.evidence { display: inline-block; padding: 2px var(--sp-3); font: 600 var(--fs-sm)/1.4 var(--font-body); border-radius: 999px; border: 1px solid currentColor; }
+.evidence-consolidada { color: var(--mata); background: var(--palha-claro); }
+.evidence-associacao { color: var(--terra); background: var(--palha-claro); }
+.evidence-hipotese { color: var(--erro); background: var(--palha-claro); border-style: dashed; }
+
+/* Referências bibliográficas */
+.refs { margin: var(--sp-2) 0 0; padding-left: var(--sp-5); font-size: var(--fs-sm); }
+.refs li { margin-bottom: var(--sp-2); overflow-wrap: anywhere; }
+.ref-pending { color: var(--erro); font-style: italic; }
+
+/* ---------- 9. Pesquisa e filtros ---------- */
+.search-bar {
+  display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: flex-end;
+  padding: var(--sp-4); margin: var(--sp-5) 0 var(--sp-2);
+  background: var(--palha-escuro); border: var(--border); border-radius: var(--radius);
+}
+.field { display: flex; flex-direction: column; gap: var(--sp-1); min-width: 10rem; }
+.field-grow { flex: 1 1 16rem; }
+label { font: 700 var(--fs-sm)/1.3 var(--font-title); color: var(--terra); }
+input[type="search"], select {
+  font: 400 var(--fs-base)/1.3 var(--font-body); color: var(--ink);
+  padding: var(--sp-3); min-height: 2.75rem; width: 100%;
+  background: var(--palha-claro); border: 2px solid var(--areia); border-radius: var(--radius);
+}
+input[type="search"]:focus, select:focus { border-color: var(--mata); }
+
+/* ---------- 10. Mini atlas das raças ---------- */
+.breed-cards { display: grid; gap: var(--sp-5); margin: var(--sp-5) 0 var(--sp-6); }
+.breed-card { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-4); background: var(--palha-claro); border: var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+.breed-card h3 { margin: 0; }
+.tag { align-self: flex-start; margin: 0; padding: 2px var(--sp-3); font: 600 var(--fs-sm)/1.5 var(--font-body); color: var(--palha); border-radius: 999px; }
+.tag-corte { background: var(--terra); }
+.tag-leite { background: var(--oliva-ink); }
+.breed-card:target { outline: var(--focus); outline-offset: 3px; }
+
+.compare { padding: var(--sp-4) var(--sp-5); background: var(--palha-escuro); border: var(--border); border-radius: var(--radius); }
+.compare-controls { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin-bottom: var(--sp-4); }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); background: var(--palha-claro); }
+th, td { padding: var(--sp-3); text-align: left; vertical-align: top; border: 1px solid var(--areia); }
+thead th { background: var(--mata); color: var(--palha); font-family: var(--font-title); }
+tbody th { background: var(--palha-escuro); color: var(--terra); font-family: var(--font-title); }
+
+/* ---------- 11. Rodapé ---------- */
+.site-footer { padding: var(--sp-5) var(--sp-4); text-align: center; background: var(--mata); color: var(--palha); border-top: 3px dashed var(--areia); }
+.site-footer p { margin: 0 auto var(--sp-2); font-size: var(--fs-sm); }
+.site-footer a { color: var(--palha); }
+.site-footer :focus-visible { outline-color: var(--palha); }
+
+/* ---------- 12. Responsividade (mobile first) ---------- */
+@media (min-width: 40em) {
+  .feature-list { grid-template-columns: repeat(2, 1fr); }
+  .breed-cards { grid-template-columns: repeat(2, 1fr); }
+  .site-header { padding-inline: var(--sp-5); }
+}
+@media (min-width: 56em) {
+  main { padding-inline: var(--sp-5); }
+  .hero { grid-template-columns: 1.1fr 1fr; }
+  .atlas-layout { grid-template-columns: minmax(0, 1fr) var(--panel-w); }
+  .info-panel { position: sticky; top: 6rem; }
+  .anatomy-layout { grid-template-columns: 14rem minmax(0, 1fr) minmax(0, 1.3fr); }
+  .system-list { flex-direction: column; }
+  .system-list button { width: 100%; }
+  .nutrition-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+  .nutrient-list { align-self: start; max-height: 36rem; overflow-y: auto; padding-right: var(--sp-2); }
+  .science-panel { position: sticky; top: 6rem; align-self: start; }
+}
+@media (min-width: 72em) {
+  .feature-list { grid-template-columns: repeat(4, 1fr); }
+  .breed-cards { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 39.99em) {
+  .site-header { position: static; }
+  .brand-name { font-size: 1.35rem; }
+  .main-nav { order: 3; width: 100%; overflow-x: auto; }
+  .main-nav ul { flex-wrap: nowrap; }
+  .main-nav a { white-space: nowrap; }
+  .viewer-controls .btn { flex: 1 1 calc(50% - var(--sp-2)); }
+  html { scroll-padding-top: 1rem; }
+}
+
+/* ---------- 13. Preferências do usuário ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+@media print {
+  .site-header, .viewer-controls, .search-bar, .skip-link { display: none; }
+  body { background: #fff; }
+}
